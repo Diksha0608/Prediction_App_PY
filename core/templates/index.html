@@ -1,6 +1,54 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+
+<h1>User Predictions</h1>
+
+{% block fixture_list %}
+<div id="fixture_list">
+
+    {% for fixture, prediction in fixtures_and_preditctions %}
+
+    {% block fixture-container %}
+
+    <div id="prediction-container" x-data="{editing:false}">
+
+        {{ fixture.home_team }}
+
+        <span x-show="editing">
+            {% include 'partials/prediction-form.html' %}
+        </span>
+
+        {% if prediction %}
+        <span x-show="!editing">
+            {{ prediction.home_goals }} - {{ prediction.away_goals }}
+        </span>
+        {% else %}
+        <span x-show="!editing">-</span>
+
+        {% endif %}
+
+        {{ fixture.away_team }}
+
+        <span style="margin-left: 10px;">
+            <button @click="editing=true" x-show="!editing">Edit</button>
+            <button @click="editing=true" x-show="editing">Cancel</button>
+        </span>
+
+        <span x-show="editing">
+            <button id="predict-fixture-{{ fixture.pk }}">Submit</button>
+        </span>
+
+        <hr />
+
+    </div>
+     {%endblock%}
+    {%endfor%}
+</div>
+
+{% endblock %}
+
 
 Hello
 

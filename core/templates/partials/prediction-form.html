@@ -1,0 +1,23 @@
+
+
+<form style="display: inline;" hx-trigger="click from:#predict-fixture-{{ fixture.pk }}" 
+hx-post="{% url 'submit-prediction' fixture.pk %}"
+>
+<input
+type="number"
+min="0"
+max="10"
+class="prediction-input"
+name="home_goals"
+required
+/>
+<input
+type="number"
+min="0"
+max="10"
+class="prediction-input"
+name="away_goals"
+required
+/>
+
+</form>
